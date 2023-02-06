@@ -13,3 +13,4 @@ Optional:
 1. Connect the application to SQL database running inside the cluster.
 2. Deploy the application using helm.
 Everything should be in the git repository with commits
+--------------
