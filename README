@@ -1,0 +1,15 @@
+Nexo DevOps Task
+
+The goal is to set up CI/CD process for backend application.
+
+Minimum requirements:
+1. Hello world application written on any language running inside Docker
+2. Local environment with docker compose
+3. Automated docker build &amp; push process with any CI tools like Github Actions,
+TravisCI, etc.
+4. Deploy to local Kubernetes environment like minikube.
+
+Optional:
+1. Connect the application to SQL database running inside the cluster.
+2. Deploy the application using helm.
+Everything should be in the git repository with commits
