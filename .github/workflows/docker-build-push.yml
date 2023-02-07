@@ -31,6 +31,6 @@ jobs:
         password: ${{ env.DOCKER_PASSWORD }}
 
     - name: Push Docker image
-      uses: docker/push-action@v1
+      uses: docker/push-action@v4
       with:
         tags: ${{ env.DOCKER_REGISTRY }}/nexo_image:${{ env.GITHUB_SHA }}
