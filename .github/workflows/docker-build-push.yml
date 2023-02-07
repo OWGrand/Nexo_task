@@ -7,7 +7,7 @@ on:
 
 env:
   DOCKER_REGISTRY: docker.pkg.github.com/OWGrand/Nexo_task
-  DOCKER_USERNAME: owgrand
+  DOCKER_USERNAME: OWGrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
