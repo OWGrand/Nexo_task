@@ -9,7 +9,7 @@ env:
   DOCKER_REGISTRY: hub.docker.com
   DOCKER_REPOSITORY: owgrand/nexo_image
   DOCKER_USERNAME: owgrand
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASS }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   build-and-push:
