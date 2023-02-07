@@ -6,7 +6,7 @@ on:
       - test1
 
 env:
-  DOCKER_REGISTRY: hub.docker.com #github.com/OWGrand
+  DOCKER_REGISTRY: https://hub.docker.com #github.com/OWGrand
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASS }}
 
@@ -32,7 +32,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.DOCKER_REGISTRY }}/repository/docker/owgrand/nexo_image:tagname
+        tags: ${{ env.DOCKER_REGISTRY }}/repository/docker/owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/Nexo_task:${{ env.GITHUB_SHA }}
 
 
