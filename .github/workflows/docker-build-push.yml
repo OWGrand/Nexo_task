@@ -50,7 +50,7 @@ jobs:
         #with:
         # version: 1.20.3
 
-    - #name: Deploy K8S
+          #- name: Deploy K8S
       #uses: appleboy/kubectl-apply-action@v1
         #with:
         #args: apply -f .
