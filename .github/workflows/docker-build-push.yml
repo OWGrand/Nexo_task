@@ -53,5 +53,5 @@ jobs:
     - name: Deploy K8S
       uses: appleboy/kubectl-apply-action@v1
       with:
-        args: apply -f k8s/
-
+        args: apply -f .
+ 
