@@ -28,18 +28,18 @@ jobs:
         username: ${{ env.DOCKER_USERNAME }}
         password: ${{ env.DOCKER_PASSWORD }}
 
-    #- name: Build and push
-      #uses: docker/build-push-action@v4 
-      #with:
-        #context: .
-        #push: true
-        #tags: hub.docker.com/repository/docker/owgrand/nexo_image:latest
+    - name: Build and push
+      uses: docker/build-push-action@v4 
+      with:
+        context: .
+        push: true
+        tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest #${{ env.GITHUB_SHA }}
 
 
 
-    - name: Push Docker image
-      uses: docker/push-action@v2
-      with:
-        tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest
+    #- name: Push Docker image
+    #  uses: docker/push-action@v2
+     # with:
+       # tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest
 
