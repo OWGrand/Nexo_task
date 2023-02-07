@@ -6,7 +6,7 @@ on:
       - test1
 
 env:
-  DOCKER_REGISTRY: hub.docker.com/repository/docker/owgrand
+  DOCKER_REGISTRY: github.com/OWGrand
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
