@@ -3,7 +3,7 @@ name: Push Docker image
 on:
   push:
     branches:
-      - main
+      - test1
 
 env:
   DOCKER_REGISTRY: docker.pkg.github.com/OWGrand/Nexo_task
