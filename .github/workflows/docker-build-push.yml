@@ -6,7 +6,7 @@ on:
       - test1
 
 env:
-  DOCKER_REGISTRY: hub.docker.com
+  DOCKER_REGISTRY: hub.docker.com/repository/docker
   DOCKER_REPOSITORY: owgrand/nexo_image
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
