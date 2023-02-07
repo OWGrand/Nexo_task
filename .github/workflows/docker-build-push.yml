@@ -6,6 +6,12 @@ on:
       - main
 
 env:
+  DOCKER_REGISTRY: docker.pkg.github.com/OWGrand/Nexo_task
+  DOCKER_USERNAME: <GITHUB_USERNAME>
+  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+
+env:
   DOCKER_REGISTRY: docker.io
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
