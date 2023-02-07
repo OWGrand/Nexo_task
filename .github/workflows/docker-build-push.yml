@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build and push
-      uses: docker/build-push-action
+      uses: docker/build-push-action@v3
       with:
         context: .
         push: true
@@ -35,7 +35,7 @@ jobs:
         password: ${{ env.DOCKER_PASSWORD }}
 
     - name: Push Docker image
-      uses: docker/push-action
+      uses: docker/push-action@v3
       with:
         tags: ${{ env.DOCKER_REGISTRY }}/nexo_image:${{ env.GITHUB_SHA }}
 
