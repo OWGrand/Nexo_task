@@ -33,8 +33,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: hub.docker.com/repository/docker/owgrand/nexo_image:latest
-        #tags: ${{ env.DOCKER_REGISTRY }}/Nexo_task:${{ env.GITHUB_SHA }}
+        #tags: hub.docker.com/repository/docker/owgrand/nexo_image:latest
+        tags: ${{ env.DOCKER_REGISTRY }}/owgrand/nexo_image:${{ env.GITHUB_SHA }}
 
 
 
