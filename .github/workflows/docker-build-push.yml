@@ -1,10 +1,11 @@
-name: Push Docker image
+name: Deploy Docker image to Minikube
 
 on:
   push:
     branches:
       - test1
       - test2
+      - test3
       - main
 
 env:
@@ -12,9 +13,10 @@ env:
   DOCKER_REPOSITORY: owgrand/nexo_image
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  KUBECONFIG: ${{ pwd }}/kommander-cluster-admin-config
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,48 +40,6 @@ jobs:
         tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest #${{ env.GITHUB_SHA }}
 
-
-
-    #- name: Push Docker image
-    #  uses: docker/push-action@v2
-     # with:
-       # tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest
-
-          #- name: Install kubectl CLI
-      #uses: warrensbox/setup-kubectl-action@v1
-        #with:
-        # version: 1.20.3
-
-          #- name: Deploy K8S
-      #uses: appleboy/kubectl-apply-action@v1
-        #with:
-        #args: apply -f .
- 
-          #    - uses: actions-hub/kubectl@master
-          # env:
-          #KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-          #with:
-          #args: get pods
-
-name: Deploy to Minikube
-
-on:
-  push:
-    branches:
-      - main
-      - test3  
-
-env:
-  KUBECONFIG: ${{ pwd }}/kommander-cluster-admin-config
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Install Minikube
       run: |
         sudo apt-get update
@@ -98,4 +58,4 @@ jobs:
 
     - name: Deploy script to Minikube
       run: |
-        kubectl --kubeconfig ${KUBECONFIG} get all --all-namespaces          
+        kubectl --kubeconfig ${KUBECONFIG} get all --all-namespaces
