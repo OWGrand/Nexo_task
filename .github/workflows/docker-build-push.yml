@@ -38,4 +38,7 @@ jobs:
         push: true
         tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:${{ env.GITHUB_SHA }}
-
+    - name: Deploy to minikube
+      run:
+        kubectl apply -f minikubeK8Spods-build-push.yml 
+          
