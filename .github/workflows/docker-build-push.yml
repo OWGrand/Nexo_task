@@ -1,22 +1,21 @@
-name: Deploy Docker image to Minikube
+name: Push Docker image
 
 on:
   push:
     branches:
       - test1
       - test2
-      - test3  
       - main
+      - test3
 
 env:
   DOCKER_REGISTRY: hub.docker.com/repository/docker
   DOCKER_REPOSITORY: owgrand/nexo_image
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  KUBECONFIG: ${{ env.GITHUB_WORKSPACE }}/kommander-cluster-admin-config
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,24 +37,11 @@ jobs:
         context: .
         push: true
         tags: owgrand/nexo_image:latest
-        #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:latest #${{ env.GITHUB_SHA }}
+        #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:${{ env.GITHUB_SHA }}
 
-    - name: Install Minikube
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y curl
-        curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-        chmod +x minikube
-        sudo install minikube /usr/local/bin/
+- name: Deploy to local Kubernetes environment
+  env:
+    KUBECONFIG: ${{ env.GITHUB_WORKSPACE }}/kommander-cluster-admin-config
+  run: |
+    kubectl --kubeconfig ${{ env.KUBECONFIG }} get all --all-namespaces
 
-    - name: Start Minikube
-      run: |
-        minikube start --driver=none
-
-    - name: Set kubectl context to Minikube
-      run: |
-        kubectl config use-context minikube
-
-    - name: Deploy script to Minikube
-      run: |
-        kubectl --kubeconfig ${KUBECONFIG} get all --all-namespaces
