@@ -38,6 +38,8 @@ jobs:
         push: true
         tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:${{ env.GITHUB_SHA }}
+    - name: Interact with the cluster
+      run: kubectl --server=localhost:6666 get nodes
     - name: Deploy to minikube
       run:
         kubectl apply -f minikubeK8Spods-build-push.yml 
