@@ -5,7 +5,6 @@ on:
     branches:
       - test1
       - test2
-      - test3
       - main
 
 env:
@@ -13,7 +12,7 @@ env:
   DOCKER_REPOSITORY: owgrand/nexo_image
   DOCKER_USERNAME: owgrand
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  KUBECONFIG: ${{ pwd }}/kommander-cluster-admin-config
+  KUBECONFIG: ${{ env.GITHUB_WORKSPACE }}/kommander-cluster-admin-config
 
 jobs:
   build-and-deploy:
