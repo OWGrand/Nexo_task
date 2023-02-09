@@ -39,8 +39,3 @@ jobs:
         tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:${{ env.GITHUB_SHA }}
 
-    - name: Deploy to local Kubernetes environment
-      env:
-        KUBECONFIG: ${{ env.GITHUB_WORKSPACE }}/kommander-cluster-admin-config
-      run: |
-        kubectl --kubeconfig ${{ env.KUBECONFIG }} get all --all-namespaces
