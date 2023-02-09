@@ -55,8 +55,47 @@ jobs:
         #with:
         #args: apply -f .
  
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-      with:
-        args: get pods
+          #    - uses: actions-hub/kubectl@master
+          # env:
+          #KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          #with:
+          #args: get pods
+
+name: Deploy to Minikube
+
+on:
+  push:
+    branches:
+      - main
+      - test3  
+
+env:
+  KUBECONFIG: ${{ pwd }}/kommander-cluster-admin-config
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Minikube
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl
+        curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        chmod +x minikube
+        sudo install minikube /usr/local/bin/
+
+    - name: Start Minikube
+      run: |
+        minikube start --driver=none
+
+    - name: Set kubectl context to Minikube
+      run: |
+        kubectl config use-context minikube
+
+    - name: Deploy script to Minikube
+      run: |
+        kubectl --kubeconfig ${KUBECONFIG} get all --all-namespaces          
