@@ -38,6 +38,8 @@ jobs:
         push: true
         tags: owgrand/nexo_image:latest
         #tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPOSITORY }}:${{ env.GITHUB_SHA }}
+    - name: forward ports
+      run: kubectl port-forward --address 0.0.0.0 service/kubernetes 6666:443
     - name: Interact with the cluster
       run: minikube start --port 6666
       #  run: kubectl --server=localhost:6666 get nodes
